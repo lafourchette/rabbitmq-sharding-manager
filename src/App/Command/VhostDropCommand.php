@@ -3,7 +3,6 @@
 namespace App\Command;
 
 use App\Entity\Vhost;
-use Doctrine\DBAL\Platforms\SQLAnywhere11Platform;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -34,7 +33,6 @@ class VhostDropCommand extends AbstractCommand
             $output->writeln('<error>We\'re not able to drop a non-temporary vhost<error>');
             return;
         }
-
 
         $output->writeln('<info>Dropping vhost...</info>');
         $client->vhosts()->delete($vhost);
