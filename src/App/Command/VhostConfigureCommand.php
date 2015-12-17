@@ -3,7 +3,6 @@
 namespace App\Command;
 
 use App\Entity\Vhost;
-use Doctrine\DBAL\Platforms\SQLAnywhere11Platform;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
