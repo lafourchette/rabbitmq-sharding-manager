@@ -1,0 +1,14 @@
+services:
+  filesystem:
+    class: Symfony\Component\Filesystem\Filesystem
+
+  version:
+    class: Skel\Lib\Version
+
+  rabbitmq.client:
+    class: RabbitMq\ManagementApi\Client
+    arguments:
+      -
+      - %rabbitmq.url%
+      - %rabbitmq.username%
+      - %rabbitmq.password%

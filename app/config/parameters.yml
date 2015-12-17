@@ -1,0 +1,4 @@
+parameters:
+  rabbitmq.url: http://rabbitmq.integ8.lafourchette.io:15672
+  rabbitmq.username: lafourchette
+  rabbitmq.password: lafourchette

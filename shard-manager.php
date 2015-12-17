@@ -11,7 +11,7 @@ $password = 'lafourchette';
 $vhost = '/tmp_vhost';
 $exchange = 'tmp_exchange';
 $queueTemplate = 'queue.{modulus}';
-$routingTemplate = 'message.1.{modulus}';
+$routingTemplate = 'message.1.{modulus}.#';
 $nbShard = 10;
 
 $client = new Client(null, $baseUrl, $username, $password);
