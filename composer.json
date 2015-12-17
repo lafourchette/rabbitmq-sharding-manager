@@ -1,0 +1,12 @@
+{
+    "name": "olaurendeau/rabbitmq-sharding-manager",
+    "authors": [
+        {
+            "name": "Olivier Laurendeau",
+            "email": "o.laurendeau@gmail.com"
+        }
+    ],
+    "require": {
+        "richardfullmer/rabbitmq-management-api": "^1.0"
+    }
+}
