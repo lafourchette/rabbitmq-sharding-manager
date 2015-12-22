@@ -5,6 +5,7 @@ namespace App\Command;
 use App\Entity\Vhost;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class VhostDropCommand extends AbstractCommand
@@ -18,6 +19,7 @@ class VhostDropCommand extends AbstractCommand
             ->setName('vhost:drop')
             ->setDescription('Drop a vhost')
             ->addArgument('vhost', InputArgument::REQUIRED, 'Vhost name')
+            ->addOption('rabbitmq-connection-uri', 'u', InputOption::VALUE_OPTIONAL, 'Specify the rabbitmq connection uri (amqp://{username}:{password}@{host}:{port}/{vhost})')
         ;
     }
 
@@ -26,6 +28,11 @@ class VhostDropCommand extends AbstractCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $uri = $input->getOption('rabbitmq-connection-uri');
+        if (null !== $uri) {
+            $this->setupClient($uri);
+        }
+
         $client = $this->container->get('rabbitmq.client');
         $vhost = $input->getArgument('vhost');
 

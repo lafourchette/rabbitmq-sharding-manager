@@ -5,6 +5,7 @@ namespace App\Command;
 use App\Entity\Vhost;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class VhostConfigureCommand extends AbstractCommand
@@ -19,6 +20,7 @@ class VhostConfigureCommand extends AbstractCommand
             ->setDescription('Setup a sharding environment on a new vhost')
             ->addArgument('routing-key-template', InputArgument::REQUIRED, 'Define routing template, should look like "routing.1.{modulus}.#"')
             ->addArgument('modulus', InputArgument::REQUIRED, 'How many shards do you need ?')
+            ->addOption('rabbitmq-connection-uri', 'u', InputOption::VALUE_OPTIONAL, 'Specify the rabbitmq connection uri (amqp://{username}:{password}@{host}:{port}/{vhost})')
         ;
     }
 
@@ -27,6 +29,11 @@ class VhostConfigureCommand extends AbstractCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $uri = $input->getOption('rabbitmq-connection-uri');
+        if (null !== $uri) {
+            $this->setupClient($uri);
+        }
+
         $client = $this->container->get('rabbitmq.client');
         $username = $this->container->getParameter('rabbitmq.username');
         $vhost = sprintf(Vhost::VHOST_TEMPLATE, uniqid());

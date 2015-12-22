@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use RabbitMq\ManagementApi\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -21,4 +22,17 @@ abstract class AbstractCommand extends Command implements ContainerAwareInterfac
         $this->container = $container;
     }
 
+    protected function setupClient($uri)
+    {
+        $parsedUri = parse_url($uri);
+
+        $client = new Client(
+            null,
+            sprintf('%s://%s:%s', $parsedUri['scheme'], $parsedUri['host'], $parsedUri['port']),
+            $parsedUri['user'],
+            $parsedUri['pass']
+        );
+
+        $this->container->set('rabbitmq.client', $client);
+    }
 }

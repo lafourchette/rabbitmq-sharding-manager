@@ -1,0 +1,21 @@
+{
+  "chmod": "0755",
+  "directories": [
+    "app/config",
+    "src"
+  ],
+  "files": [
+    "./vendor/guzzle/guzzle/src/Guzzle/Http/Resources/cacert.pem"
+  ],
+  "finder": [
+    {
+      "name": "*.php",
+      "exclude": ["Tests", "tests"],
+      "in": "vendor"
+    }
+  ],
+  "git-version": "package_version",
+  "main": "app/console",
+  "output": "rabbitmq-sharding-manager.phar",
+  "stub": true
+}
