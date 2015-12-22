@@ -1,8 +1,8 @@
 # Install
 
 ```
-curl -LO "https://github.com/openl10n/openl10n-cli/releases/download/${VERSION}/openl10n.phar"
-chmod +x openl10n.phar
+curl -LO "https://github.com/lafourchette/rabbitmq-sharding-manager/releases/download/v1.0.0/rabbitmq-sharding-manager.phar"
+php rabbitmq-sharding-manager.phar
 ```
 
 # Usage
